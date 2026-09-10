@@ -1,6 +1,7 @@
 import json
 
 from video_studio.pipeline import Studio
+from video_studio.render import build_render_command
 
 
 def test_create_production_has_requested_duration_and_word_captions(tmp_path):
@@ -31,3 +32,17 @@ def test_local_asset_generation_writes_a_reproducible_manifest(tmp_path):
     assert (tmp_path / "assets" / "scene-01.svg").exists()
     assert (tmp_path / "assets" / "voice.wav").exists()
     assert (tmp_path / "assets" / "music.wav").exists()
+
+
+def test_render_command_uses_all_assets_audio_mix_and_captions(tmp_path):
+    studio = Studio()
+    production = studio.create("un anuncio sobre energía limpia", duration=6)
+    studio.write_captions(production, tmp_path / "captions.srt")
+    studio.generate_assets(production, tmp_path)
+    command = build_render_command(production, tmp_path, tmp_path / "final.mp4")
+    command_text = " ".join(command)
+    assert "scene-01.svg" in command_text
+    assert "concat=n=3:v=1:a=0" in command_text
+    assert "amix=inputs=2:duration=first" in command_text
+    assert "subtitles=" in command_text
+    assert command[-1] == str(tmp_path / "final.mp4")

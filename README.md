@@ -17,7 +17,16 @@ El resultado contiene `production.json` (brief, investigación, escenas y
 prompts) y `captions.srt`. Añade `--generate-assets` para generar un storyboard
 SVG por escena, una pista WAV de voz de demostración y una cama sonora local,
 sin consumir ninguna API. Para validar el montaje local con FFmpeg, añade
-`--render-preview`.
+`--render-preview`. Para crear un vídeo final a partir de los assets, usa
+`--render` (requiere FFmpeg):
+
+```bash
+video-studio 'un anuncio cinematográfico para una interfaz neuronal' --output productions/neural --render
+```
+
+El resultado es `final.mp4`, con las escenas concatenadas, música mezclada a un
+volumen inferior que la voz y subtítulos integrados. `--render` genera primero
+los assets locales si aún no se han creado.
 
 ```bash
 video-studio 'anuncio cinematográfico para una interfaz neuronal' --reference-url https://youtu.be/VIDEO_ID --render-preview

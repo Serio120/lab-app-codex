@@ -4,6 +4,16 @@ Este archivo registra la evolución funcional del proyecto desde su creación. S
 añaden entradas a cada cambio visible para que el estado del producto sea
 auditable sin depender del historial de Git.
 
+## [0.3.0] - 2026-09-10
+
+### Añadido
+- Renderizador de producción con FFmpeg que concatena las escenas, mezcla voz y
+  música, incorpora subtítulos y escribe `final.mp4`.
+- Flag `--render`, que genera los assets locales requeridos antes de iniciar el
+  renderizado.
+- Construcción del comando de FFmpeg separada y comprobable sin tener FFmpeg
+  instalado, para permitir pruebas deterministas en CI.
+
 ## [0.2.0] - 2026-09-10
 
 ### Añadido
