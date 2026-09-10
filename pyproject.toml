@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "video-studio"
+version = "0.1.0"
+description = "Agent-orchestrated video production studio"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+youtube = ["yt-dlp>=2025.1.0"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+video-studio = "video_studio.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/video_studio"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
