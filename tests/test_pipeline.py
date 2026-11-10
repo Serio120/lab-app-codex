@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -53,4 +54,4 @@ def test_youtube_reference_is_retained():
 
 
 def test_ffmpeg_filter_path_escapes_colons_and_quotes():
-    assert _escape_filter_path(__import__("pathlib").Path("folder/it's:here.txt")) == "folder/it'\\''s\\:here.txt"
+    assert _escape_filter_path(Path("folder/it's:here.txt")) == "folder/it'\\''s\\:here.txt"
