@@ -6,7 +6,7 @@ Video Studio es un proyecto en Python para explorar un flujo reproducible de pre
 
 ## Alcance actual
 
-La rama principal contiene una primera prueba técnica que permite:
+La base técnica actual contiene una primera prueba técnica que permite:
 
 - Crear un manifiesto JSON con un brief y tres escenas de ejemplo.
 - Generar subtítulos SRT con tiempos provisionales calculados de forma uniforme.
