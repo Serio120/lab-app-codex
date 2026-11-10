@@ -3,7 +3,7 @@
 Los estados describen el código disponible en el repositorio, no una estimación de fechas.
 
 ## Fase 0 — Definición del proyecto
-<badge>En curso</badge>
+**Estado: en curso**
 
 - [x] Documentar visión, usuarios hipotéticos y alcance inicial.
 - [x] Separar funciones existentes de capacidades futuras.
@@ -11,7 +11,7 @@ Los estados describen el código disponible en el repositorio, no una estimació
 - [ ] Validar formatos, idiomas, duración y caso de uso prioritario.
 
 ## Fase 1 — Base técnica local
-<badge>En curso</badge>
+**Estado: en curso**
 
 - [x] CLI y paquete Python instalable.
 - [x] Manifiesto JSON básico.
@@ -23,7 +23,7 @@ Los estados describen el código disponible en el repositorio, no una estimació
 - [ ] Gestión de errores y estado de cada etapa.
 
 ## Fase 2 — Flujo de preproducción
-<badge color="secondary">Planificada</badge>
+**Estado: planificada**
 
 - [ ] Brief configurable: idioma, formato, audiencia y duración.
 - [ ] Propuesta de estructura y escenas editable.
@@ -31,7 +31,7 @@ Los estados describen el código disponible en el repositorio, no una estimació
 - [ ] Investigación con fuentes y trazabilidad, si se confirma como requisito.
 
 ## Fase 3 — Recursos y montaje
-<badge color="secondary">Planificada</badge>
+**Estado: planificada**
 
 - [ ] Manifiesto de assets y proveedores locales.
 - [ ] Adaptadores opcionales para servicios externos.
@@ -40,7 +40,7 @@ Los estados describen el código disponible en el repositorio, no una estimació
 - [ ] Pruebas de integración FFmpeg.
 
 ## Fase 4 — Calidad y distribución
-<badge color="secondary">Futura</badge>
+**Estado: futura**
 
 - [ ] Perfiles de exportación 16:9 y 9:16.
 - [ ] Informes de costes, licencias y procedencia.
