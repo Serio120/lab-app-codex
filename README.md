@@ -1,42 +1,59 @@
 # Video Studio
 
-Un estudio de producción de vídeo en Python dirigido por agentes. Convierte una
-instrucción en un paquete de producción reproducible: investigación editorial,
-guion por escenas, prompts visuales originales, dirección de música, locución y
-subtítulos palabra a palabra.
+**Estado del proyecto: definición y prototipo técnico. No es todavía un producto terminado ni un MVP de producción.**
 
-## Inicio rápido
+Video Studio es un proyecto en Python para explorar un flujo reproducible de preproducción y montaje de vídeos a partir de un brief. La intención es separar guion, escenas, recursos, audio, subtítulos y renderizado para poder incorporar proveedores reales más adelante.
+
+## Alcance actual
+
+La rama principal contiene una primera prueba técnica que permite:
+
+- Crear un manifiesto JSON con un brief y tres escenas de ejemplo.
+- Generar subtítulos SRT con tiempos provisionales calculados de forma uniforme.
+- Validar y conservar una URL de YouTube como referencia declarativa.
+- Crear una previsualización FFmpeg de tarjeta de título, si FFmpeg está instalado.
+
+**Todavía no hace** investigación automática, generación de guiones mediante IA, generación de imágenes o clips, síntesis de voz, búsqueda de música ni sincronización de subtítulos con audio real. Los protocolos de `providers.py` son contratos de integración, no proveedores implementados.
+
+## Preparar el entorno
+
+Requiere Python 3.11 o superior.
 
 ```bash
-python -m venv .venv && . .venv/bin/activate
-pip install -e '.[dev]'
-video-studio 'crea un corto animado sobre un plátano solitario que encuentra un amigo' --duration 60 --output productions/banana
+python -m venv .venv
+# Linux/macOS
+source .venv/bin/activate
+# Windows PowerShell
+# .venv\Scripts\Activate.ps1
+
+python -m pip install -e ".[dev]"
 ```
 
-El resultado contiene `production.json` (brief, investigación, escenas y
-prompts) y `captions.srt`. Para validar el montaje local con FFmpeg, sin consumir
-ninguna API, añade `--render-preview`.
+Crear un paquete de producción de ejemplo:
 
 ```bash
-video-studio 'anuncio cinematográfico para una interfaz neuronal' --reference-url https://youtu.be/VIDEO_ID --render-preview
+video-studio "un corto sobre una ciudad sostenible" --duration 60 --output productions/ciudad
 ```
 
-## Flujo y límites creativos
+El comando escribe `production.json` y `captions.srt`. La opción `--render-preview` genera únicamente una tarjeta de título de prueba con FFmpeg; no representa el montaje final previsto.
 
-`Studio` coordina las etapas de investigación, guion, dirección visual, voz,
-música, subtitulado y ensamblaje. Los protocolos de `providers.py` son el punto
-de integración para proveedores de LLM, imagen/vídeo, TTS y catálogos de música
-con licencia. Las claves deben estar en variables de entorno; no se escriben en
-los manifiestos.
+## Documentación del proyecto
 
-Un enlace de YouTube se trata únicamente como referencia de ritmo y observaciones
-editoriales de alto nivel. El sistema no descarga ni copia el audiovisual, guion,
-voz o música de la referencia: los recursos del resultado deben ser originales y
-con licencia apropiada. Revise los datos investigados, licencias musicales y
-derechos de marca antes de publicar.
+- [Definición del proyecto](docs/PROJECT_BRIEF.md): problema, usuarios, objetivos, límites y criterios de aceptación.
+- [Arquitectura](docs/ARCHITECTURE.md): componentes actuales y arquitectura objetivo.
+- [Hoja de ruta](docs/ROADMAP.md): fases, entregables y estado.
+- [Contribuir](CONTRIBUTING.md): entorno, pruebas y flujo de cambios.
+
+## Estado y principios
+
+El trabajo se encuentra en fase de definición y validación técnica. Las decisiones de producto y las integraciones externas se abordarán por fases; no se deben presentar como implementadas hasta que exista código y pruebas que lo demuestren.
+
+Las referencias audiovisuales solo podrán utilizarse como orientación editorial de alto nivel. Los recursos finales deberán ser originales o contar con licencias y permisos adecuados. No se deben almacenar claves ni credenciales en el repositorio ni en los manifiestos generados.
 
 ## Desarrollo
 
 ```bash
-pytest
+python -m pytest
 ```
+
+La integración continua ejecuta las pruebas en Python 3.11 y 3.12.
